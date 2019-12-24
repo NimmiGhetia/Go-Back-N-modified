@@ -1,0 +1,45 @@
+ACN Assignment 1
+Name : Nimmi Ghetia
+ID : 2018H1120276P
+
+Packet description:
+    type : describes the type of packet i.e segment or ack packet
+    length : length of data
+    isLastPacket : whether it is terminal packet or not
+    payload : actual data
+    sequence No : to ensure that packets are in order
+
+File read:
+    Reading whole file in one go
+
+File write:
+    writting one packet at a time in file
+
+Features : 
+    - random time delay in sending ack at receiver side using delay function
+    - receiver buffer stores whole file then write it to output.txt in one go
+    - sender sends ws packets at a time and maintains base (next expected ack)
+    - asynchronous calls used for timeout timer using alarm system call
+
+To run:
+Use any Unix system. Open two terminal tabs.
+
+In the first tab, compile both the sender and receiver code with commands:
+make makefile sender
+make makefile receiver
+
+In the first tab, start the reciever:
+Usage:  %s <UDP SERVER PORT> <CHUNK SIZE>
+./receiver 9999 256 .1  (set the lose rate to what you want it)
+
+In the second tab, run the Sender:
+Usage: %s <Server IP> <Server Port> <File Name> <Chunk Size> <Window Size>
+./sender 127.0.0.1 9999 input.txt 256 6
+
+You will be able to watch the output in the terminal tabs in real time.
+When the transmition is finished the message will be displayed in the reciever tab
+and the receiver will wait for more senders.
+
+
+
+
